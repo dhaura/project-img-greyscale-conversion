@@ -7,7 +7,7 @@ int main() {
     std::cout << "OpenCV version: " << CV_VERSION << std::endl;
 
     // Load input image
-    std::string input_file = "D:\\Academic\\CPP\\HPCProjects\\project-img-greyscale-conversion\\samples\\inputs\\sample-input-2.jpg";
+    std::string input_file = "/Users/dhaurapathirana/Documents/Personal/HPC/Projects/project-img-greyscale-conversion/samples/inputs/sample-input-2.jpg";
     std::cout << "Input file: " << input_file << "\n";
     
     cv::Mat rgbaImage = cv::imread(input_file, cv::IMREAD_UNCHANGED);
@@ -24,7 +24,7 @@ int main() {
     std::cout << "Completed grayscale conversion successfully.\n";
 
     // Save grayscale image
-    std::string output_file = "D:\\Academic\\CPP\\HPCProjects\\project-img-greyscale-conversion\\samples\\outputs\\sample-output-2.jpg";
+    std::string output_file = "/Users/dhaurapathirana/Documents/Personal/HPC/Projects/project-img-greyscale-conversion/samples/outputs/sample-output-2.jpg";
     if (!cv::imwrite(output_file, greyImage)) {
         std::cerr << "Error: Could not save the grayscale image.\n";
         return -1;
