@@ -1,7 +1,7 @@
 #include <iostream>
 #include <opencv2/opencv.hpp>
 
-class BasicIGSC 
+class SeqIGSC 
 {
 	public:
 		static void convertImageToGrayscale(const cv::Mat& rgbaImage, cv::Mat& greyImage)
