@@ -42,3 +42,10 @@
 
 ### VS ###
 .vs
+
+### MacOS ###
+.DS_Store
+
+/build
+/out
+gsc-opencv
