@@ -6,7 +6,7 @@ class SeqIGSC
 	public:
 		static void convertImageToGrayscale(const cv::Mat& rgbImage, cv::Mat& greyImage)
 		{
-            std::cout << "Image Channels: " << rgbImage.channels() << std::endl;
+            std::cout << "Image Channels: " << rgbImage.channels() << "\n";
             CV_Assert(rgbImage.channels() == 3); // Ensure input image is RGB
 
             greyImage.create(rgbImage.size(), CV_8UC1);
