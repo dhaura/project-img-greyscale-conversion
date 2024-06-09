@@ -2,6 +2,7 @@
 #include <opencv2/opencv.hpp>
 
 #include "./sequential/SeqIGSC.h"
+#include "./parallel/OpenMPIGSC.h"
 
 int main() {
     // Get input file path
@@ -13,10 +14,15 @@ int main() {
     std::string output_file = "";
     std::cout << "Enter output file path: ";
     std::cin >> output_file; std::cout << "\n";
+
+    // Get execution method
+    int execution_method = 1;
+    std::cout << "Enter execution method [Sequential: 1, Parallel: 2]: ";
+    std::cin >> execution_method; std::cout << "\n";
     
     // Load input image
-    cv::Mat rgbaImage = cv::imread(input_file, cv::IMREAD_UNCHANGED);
-    if (rgbaImage.empty()) {
+    cv::Mat rgbImage = cv::imread(input_file, cv::IMREAD_UNCHANGED);
+    if (rgbImage.empty()) {
         std::cerr << "Error: Could not load image. Check the file path.\n";
         return -1;
     }
@@ -25,7 +31,17 @@ int main() {
     // Convert input image to grayscale
     cv::Mat greyImage;
     std::cout << "Starting grayscale conversion...\n";
-    SeqIGSC::convertImageToGrayscale(rgbaImage, greyImage);
+    switch (execution_method) {
+        case 1:
+            SeqIGSC::convertImageToGrayscale(rgbImage, greyImage);
+            break;
+        case 2:
+            OpenMPIGSC::convertImageToGrayscale(rgbImage, greyImage);
+            break;
+        default:
+            std::cerr << "Invalid execution method.\n";
+            return -1;
+    }
     std::cout << "Completed grayscale conversion successfully.\n";
 
     // Save grayscale image

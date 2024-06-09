@@ -1,7 +1,9 @@
 #include <iostream>
 #include <opencv2/opencv.hpp>
+#include <omp.h>
 
-class SeqIGSC 
+
+class OpenMPIGSC 
 {
 	public:
 		static void convertImageToGrayscale(const cv::Mat& rgbImage, cv::Mat& greyImage)
@@ -10,6 +12,10 @@ class SeqIGSC
             CV_Assert(rgbImage.channels() == 3); // Ensure input image is RGB
 
             greyImage.create(rgbImage.size(), CV_8UC1);
+
+            omp_set_num_threads(4);
+            
+            # pragma omp parallel for
             for (int i = 0; i < rgbImage.rows; ++i) {
                 for (int j = 0; j < rgbImage.cols; ++j) {
                     cv::Vec3b rgb = rgbImage.at<cv::Vec3b>(i, j);
