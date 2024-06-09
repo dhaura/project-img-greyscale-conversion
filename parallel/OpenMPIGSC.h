@@ -12,10 +12,9 @@ class OpenMPIGSC
             CV_Assert(rgbImage.channels() == 3); // Ensure input image is RGB
 
             greyImage.create(rgbImage.size(), CV_8UC1);
-
-            omp_set_num_threads(4);
             
-            # pragma omp parallel for
+            omp_set_num_threads(4);
+            #pragma omp parallel for collapse(2)
             for (int i = 0; i < rgbImage.rows; ++i) {
                 for (int j = 0; j < rgbImage.cols; ++j) {
                     cv::Vec3b rgb = rgbImage.at<cv::Vec3b>(i, j);

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <chrono>
 #include <opencv2/opencv.hpp>
 
 #include "./sequential/SeqIGSC.h"
@@ -31,6 +32,7 @@ int main() {
     // Convert input image to grayscale
     cv::Mat greyImage;
     std::cout << "Starting grayscale conversion...\n";
+    auto start = std::chrono::high_resolution_clock::now();
     switch (execution_method) {
         case 1:
             SeqIGSC::convertImageToGrayscale(rgbImage, greyImage);
@@ -42,7 +44,11 @@ int main() {
             std::cerr << "Invalid execution method.\n";
             return -1;
     }
+    auto end = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+    
     std::cout << "Completed grayscale conversion successfully.\n";
+    std::cout << "Time taken for conversion : " << duration.count() << " microseconds" << std::endl;
 
     // Save grayscale image
     if (!cv::imwrite(output_file, greyImage)) {
