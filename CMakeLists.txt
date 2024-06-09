@@ -1,26 +1,24 @@
 cmake_minimum_required(VERSION 3.10)
-project(ImgToGreyscaleCV)
+project(gsc_opencv)
 
 set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
-
-set(CMAKE_TOOLCHAIN_FILE "D:/Applications/Microsoft/vcpkg/scripts/buildsystems/vcpkg.cmake")
-set(OpenCV_DIR "D:/Applications/Microsoft/vcpkg/packages/opencv4_x64-windows/share/opencv4")
-set(Protobuf_DIR "D:/Applications/Microsoft/vcpkg/packages/protobuf_x64-windows/share/protobuf")
-set(TIFF_LIBRARY "D:/Applications/Microsoft/vcpkg/packages/tiff_x64-windows/lib")
-set(TIFF_INCLUDE_DIR "D:/Applications/Microsoft/vcpkg/packages/tiff_x64-windows/include")
-set(quirc_DIR "D:/Applications/Microsoft/vcpkg/packages/quirc_x64-windows/share/quirc")
 
 # Find OpenCV package
 find_package(OpenCV REQUIRED)
 
-# Add executable
-add_executable(ImgToGreyscaleCV gsc-opencv.cpp "gsc-opencv.cpp")
+# Include directories for OpenCV and OpenMP
+include_directories(/opt/homebrew/include/opencv4)
+include_directories(/opt/homebrew/Cellar/libomp/18.1.6/include)
 
-# Link OpenCV libraries
-target_link_libraries(ImgToGreyscaleCV 
-    opencv_core4
-    opencv_imgproc4
-    opencv_highgui4
-    opencv_imgcodecs4
-)
+# Link directories for OpenCV and OpenMP
+link_directories(/opt/homebrew/Cellar/opencv/4.9.0_9/lib)
+link_directories(/opt/homebrew/Cellar/libomp/18.1.6/lib)
+
+# Add the executable
+add_executable(gsc-opencv gsc-opencv.cpp)
+
+# Add OpenMP compile options for Clang
+target_compile_options(gsc-opencv PRIVATE -Xpreprocessor -fopenmp)
+
+# Link libraries
+target_link_libraries(gsc-opencv PRIVATE opencv_core opencv_imgcodecs opencv_highgui omp)
