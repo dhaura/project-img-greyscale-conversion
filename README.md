@@ -1,5 +1,27 @@
 # project-img-greyscale-conversion
 
+### Setup the Environment (MacOS)
+#### 1. Install Xcode Command Line Tools
+```zsh
+xcode-select --install
+```
+#### 2. Install Homebrew
+```zsh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+#### 3. Install OpenCV
+```zsh
+brew install opencv
+```
+#### 4. Install OpenMP
+```zsh
+brew install libomp
+```
+#### 5. Install CMake
+```zsh
+brew install cmake
+```
+
 ### Compile the Code
 #### 1. Direct Compilation
 ```zsh
