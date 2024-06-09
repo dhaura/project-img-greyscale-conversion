@@ -42,6 +42,7 @@
 
 ### VS ###
 .vs
+.vscode
 
 ### MacOS ###
 .DS_Store
