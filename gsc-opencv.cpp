@@ -4,7 +4,6 @@
 
 #include "./sequential/SeqIGSC.h"
 #include "./parallel/OpenMPIGSC.h"
-#include "./parallel/CudaIGSC.h"
 
 int main() {
     // Get input file path
@@ -42,8 +41,8 @@ int main() {
             OpenMPIGSC::convertImageToGrayscale(rgbImage, greyImage);
             break;
         case 3:
-            CudaIGSC::convertImageToGrayscale(rgbImage, greyImage);
-            break;
+            std::cout << "Parallel execution using CUDA is not implemented yet.\n";
+            return 0;
         default:
             std::cerr << "Invalid execution method.\n";
             return -1;
