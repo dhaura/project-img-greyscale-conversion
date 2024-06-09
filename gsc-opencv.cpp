@@ -19,7 +19,7 @@ int main() {
 
     // Get execution method
     int execution_method = 1;
-    std::cout << "Enter execution method [Sequential: 1, Parallel: 2]: ";
+    std::cout << "Enter execution method [Sequential: 1, Parallel - OpenMP: 2, Parallel - Cuda: 3]: ";
     std::cin >> execution_method; std::cout << "\n";
     
     // Load input image
