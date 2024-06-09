@@ -4,6 +4,7 @@
 
 #include "./sequential/SeqIGSC.h"
 #include "./parallel/OpenMPIGSC.h"
+#include "./parallel/CudaIGSC.h"
 
 int main() {
     // Get input file path
@@ -39,6 +40,9 @@ int main() {
             break;
         case 2:
             OpenMPIGSC::convertImageToGrayscale(rgbImage, greyImage);
+            break;
+        case 3:
+            CudaIGSC::convertImageToGrayscale(rgbImage, greyImage);
             break;
         default:
             std::cerr << "Invalid execution method.\n";
