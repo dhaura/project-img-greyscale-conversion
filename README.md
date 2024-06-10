@@ -1,4 +1,4 @@
-# project-img-greyscale-conversion
+# Image Greyscale Conversion
 
 ## Windows
 ### Setup the Environment
