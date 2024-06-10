@@ -18,9 +18,9 @@ int main() {
 
     // Get execution method
     int execution_method = 1;
-    std::cout << "Enter execution method [Sequential: 1, Parallel - OpenMP: 2, Parallel - Cuda: 3]: ";
+    std::cout << "Enter execution method [Sequential: 1, Parallel - OpenMP: 2]: ";
     std::cin >> execution_method; std::cout << "\n";
-    
+
     // Load input image
     cv::Mat rgbImage = cv::imread(input_file, cv::IMREAD_UNCHANGED);
     if (rgbImage.empty()) {
@@ -40,9 +40,6 @@ int main() {
         case 2:
             OpenMPIGSC::convertImageToGrayscale(rgbImage, greyImage);
             break;
-        case 3:
-            std::cout << "Parallel execution using CUDA is not implemented yet.\n";
-            return 0;
         default:
             std::cerr << "Invalid execution method.\n";
             return -1;
