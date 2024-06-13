@@ -1,5 +1,6 @@
 # Image Greyscale Conversion
 
+---
 ## Windows
 ### Setup the Environment
 #### 1. Install Visual Studio
@@ -15,6 +16,9 @@ cd vcpkg
 ```cmd
 .\vcpkg install opencv4
 ```
+#### 4. Install CUDA Toolkit
+Download and install the CUDA Toolkit from the CUDA Toolkit Download page [here](https://developer.nvidia.com/cuda-downloads).
+
 ### Compile the Code
 #### 1. Add the follwoing content to CMakeLists.txt
 ```cmake
@@ -70,18 +74,33 @@ add_executable(gsc-opencv  "gsc-opencv.cpp")
 target_link_libraries(gsc-opencv PUBLIC OpenMP::OpenMP_CXX)
 target_link_libraries(gsc-opencv PUBLIC opencv_core4 opencv_imgcodecs4 opencv_highgui4 opencv_imgproc4)
 ```
-#### 2. Compile the code using CMake
+#### 2. Compile the Sequntial/ OpenMP code using CMake
 ```cmd
 mkdir build
 cd build
 cmake ..
 cmake --build . --config Release
 ```
+#### 3. Compile the CUDA code
+```cmd
+nvcc gsc-opencv-cuda.cu -o gsc-opencv-cuda -I"{path/to/opencv/include}" -L"{path/to/opencv/lib}" -lopencv_core4 -lopencv_imgcodecs4 -lopencv_highgui4 -lopencv_imgproc4
+```
+##### Example
+```cmd
+nvcc gsc-opencv-cuda.cu -o gsc-opencv-cuda -I"D:/Applications/Microsoft/vcpkg/packages/opencv4_x64-windows/include" -L"D:/Applications/Microsoft/vcpkg/packages/opencv4_x64-windows/lib" -lopencv_core4 -lopencv_imgcodecs4 -lopencv_highgui4 -lopencv_imgproc4
+```
 
 ### Run the Project
+#### 1. Run Sequntial/ OpenMP Code
 ```cmd
 ./gsc-opencv
 ```
+#### 2. Run CUDA Code
+```cmd
+./gsc-opencv-cuda
+```
+
+---
 
 ## MacOS
 ### Setup the Environment
